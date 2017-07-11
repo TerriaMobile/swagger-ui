@@ -74,7 +74,7 @@
 	window.onload = function () {
 		// Build a system
 		const ui = SwaggerUIBundle({
-			url: "/docs/api",
+			url: location.pathname.indexOf("/docs") == 0 ? "/docs/api" : "/api/docs/spec",
 			dom_id: '#swagger-ui',
 			presets: [
 				SwaggerUIBundle.presets.apis,
