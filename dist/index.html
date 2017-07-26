@@ -73,8 +73,14 @@
 <script>
 	window.onload = function () {
 		// Build a system
+
+        var url = location.protocol + '//' + location.host;
+
+        url += location.pathname.indexOf("/docs") == 0 ? "/docs/api" : "/api/docs/spec";
+
+
 		const ui = SwaggerUIBundle({
-			url: location.pathname.indexOf("/docs") == 0 ? "/docs/api" : "/api/docs/spec",
+			url: url,
 			dom_id: '#swagger-ui',
 			presets: [
 				SwaggerUIBundle.presets.apis,
