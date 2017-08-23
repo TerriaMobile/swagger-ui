@@ -84,21 +84,22 @@
 	window.onload = function () {
 		// Build a system
         var isLaunchBase = location.pathname.indexOf("/docs") == 0;
+		var baseUrl = location.protocol + '//' + location.host;
         var apiUrls = [];
 
         if(!isLaunchBase) {
         	apiUrls.push({
         		name: location.host,
-                url: "/api/docs/spec"
+                url: baseUrl + "/api/docs/spec"
             });
         } else {
 			apiUrls.push({
 				name: "LaunchBase API",
-				url: "/docs/api"
+				url: baseUrl + "/docs/api"
 			});
 			apiUrls.push({
 				name: "LaunchBase DeviceAPI",
-				url: "/docs/api/device"
+				url: baseUrl + "/docs/api/device"
 			});
         }
 
