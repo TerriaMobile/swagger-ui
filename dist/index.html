@@ -161,6 +161,10 @@
 
             var protocol = location.protocol.substring(0, location.protocol.length -1);
             schemeSelector.value = protocol;
+
+			event = document.createEvent("HTMLEvents");
+			event.initEvent("change", true, true);
+			schemeSelector.dispatchEvent(event);
 		}
 	}
 </script>
