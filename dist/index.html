@@ -10,12 +10,8 @@
   <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32"/>
   <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16"/>
   <style>
-<<<<<<< HEAD
-    html {
-=======
     html
     {
->>>>>>> master
       box-sizing: border-box;
       overflow: -moz-scrollbars-vertical;
       overflow-y: scroll;
@@ -23,12 +19,8 @@
 
     *,
     *:before,
-<<<<<<< HEAD
-    *:after {
-=======
     *:after
     {
->>>>>>> master
       box-sizing: inherit;
     }
 
@@ -122,6 +114,10 @@
 
 		window.ui = ui;
 
+		authorize();
+
+		selectSchema();
+
 		function authorize() {
 			var securityDefinitions = ui.specSelectors.securityDefinitions();
 
@@ -148,7 +144,24 @@
 			ui.authActions.authorize(state)
 		}
 
-		authorize();
+		function selectSchema() {
+			var schemaContainer = document.getElementsByClassName('scheme-container')[0];
+
+			if(!schemaContainer) {
+				setTimeout(selectSchema, 200);
+				return;
+            }
+
+            var schemeSelector = schemaContainer.getElementsByTagName('select')[0];
+
+            if(!schemeSelector) {
+				setTimeout(selectSchema, 200);
+				return;
+            }
+
+            var protocol = location.protocol.substring(0, location.protocol.length -1);
+            schemeSelector.value = protocol;
+		}
 	}
 </script>
 </body>
