@@ -126,11 +126,12 @@
 				return;
 			}
 
-			authorizeDefinition('authentication-token');
-			authorizeDefinition('device-token');
+			authorizeDefinition('authentication-token', localStorage.getItem('authentication-token'));
+			//no device token in the web-ui, this is why we use authentication-token
+			authorizeDefinition('device-token', localStorage.getItem('authentication-token'));
 		}
 
-		function authorizeDefinition(securityKey) {
+		function authorizeDefinition(securityKey, value) {
 			var securityDefinitions = ui.specSelectors.securityDefinitions();
 
 			var schema = securityDefinitions.get(securityKey);
@@ -138,7 +139,7 @@
 			state[securityKey] = {
 				name: securityKey,
 				schema: schema,
-				value: localStorage.getItem(securityKey)
+				value: value
 			};
 
 			ui.authActions.authorize(state)
