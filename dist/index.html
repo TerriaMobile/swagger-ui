@@ -114,7 +114,7 @@
 
 		window.ui = ui;
 
-		authorize();
+		//authorize();
 
 		selectSchema();
 
@@ -126,9 +126,9 @@
 				return;
 			}
 
-			authorizeDefinition('authentication-token', localStorage.getItem('authentication-token'));
+			//authorizeDefinition('authentication-token', localStorage.getItem('authentication-token'));
 			//no device token in the web-ui, this is why we use authentication-token
-			authorizeDefinition('device-token', localStorage.getItem('authentication-token'));
+			//authorizeDefinition('device-token', localStorage.getItem('authentication-token'));
 		}
 
 		function authorizeDefinition(securityKey, value) {
