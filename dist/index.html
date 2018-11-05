@@ -104,12 +104,14 @@
 			],
       requestInterceptor: function(requestObj) {
         var req = new XMLHttpRequest();
+        var reqUrl = window.location.protocol + "//" + window.location.host + '/v1/secret';
         req.onload = function (e) {
           var secret = JSON.parse(this.responseText).data;
 
           requestObj.headers.secret = secret;
+
         };
-        req.open("GET", 'http://api.launchbase:8081/v1/secret', false);
+        req.open("GET", reqUrl, false);
         req.send();
 
         return requestObj;
