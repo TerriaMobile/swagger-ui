@@ -103,16 +103,14 @@
 				SwaggerUIStandalonePreset
 			],
       requestInterceptor: function(requestObj) {
-        var req = new XMLHttpRequest();
-        var reqUrl = window.location.protocol + "//" + window.location.host + '/v1/secret';
-        req.onload = function (e) {
-          var secret = JSON.parse(this.responseText).data;
+        var secret = localStorage.getItem("csrf-secret");
 
-          requestObj.headers.secret = secret;
+        if(!secret) {
+          alert('no csrf-token, please log in');
+          return;
+        }
 
-        };
-        req.open("GET", reqUrl, false);
-        req.send();
+        requestObj.headers['csrf-secret'] = JSON.parse(secret);
 
         return requestObj;
       },
